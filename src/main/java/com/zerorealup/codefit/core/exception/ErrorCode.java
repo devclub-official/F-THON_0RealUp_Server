@@ -24,6 +24,9 @@ public enum ErrorCode {
     // Member
     NOT_FOUND_MEMBER(NOT_FOUND, "회원을 찾을 수 없습니다. MemberId : %d"),
 
+    // Feedback
+    NOT_FOUND_FEEDBACK(NOT_FOUND, "피드백을 찾을 수 없습니다. FeedbackId : %d"),
+
     // AI
     AI_USAGE_LIMIT_EXCEEDED(TOO_MANY_REQUESTS, "오늘 사용 가능한 AI 사용 횟수를 초과했습니다. MemberId : %d, Date : %s"),
     ;
