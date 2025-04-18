@@ -35,3 +35,9 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### applicaion 제외 ###
+src/main/resources/application.yaml
+
+### 개발 DB용 docker-compose 제외 ###
+/docker-compose.yaml
