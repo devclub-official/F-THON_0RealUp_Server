@@ -1,6 +1,7 @@
 package com.zerorealup.codefit.feedback.domain;
 
 import com.zerorealup.codefit.core.domain.BaseTimeEntity;
+import com.zerorealup.codefit.member.domain.Member;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -22,14 +23,24 @@ public class Feedback extends BaseTimeEntity {
     @Column(name = "problem_title", nullable = false)
     private String problemTitle;
 
-    @Column(name = "category", nullable = false)
+    @Column(name = "category")
     private String category;
 
-    @Column(name = "difficulty", nullable = false, length = 20)
+    @Column(name = "difficulty", length = 20)
     private String difficulty;
 
+    @Column(name = "filename", nullable = false)
+    private String fileName;
+
+    @ManyToOne
+    @JoinColumn(name = "member_id", nullable = false)
+    private Member member;
     @Lob
-    @Column(name = "feedback_result", columnDefinition = "TEXT", nullable = false)
+    @Column(name = "code", columnDefinition = "TEXT", nullable = false)
+    private String code;
+
+    @Lob
+    @Column(name = "feedback_result", columnDefinition = "TEXT")
     private String feedbackResult;
 
     public static Feedback createFeedback(Long memberId, String problemTitle, String difficulty, String feedbackResult) {
@@ -39,5 +50,17 @@ public class Feedback extends BaseTimeEntity {
                 .difficulty(difficulty)
                 .feedbackResult(feedbackResult)
                 .build();
+    }
+
+    public static Feedback createFeedback(Member member, String code, String fileName) {
+        return Feedback.builder()
+                .member(member)
+                .code(code)
+                .fileName(fileName)
+                .build();
+    }
+
+    public void writeFeedback(String feedbackResult) {
+        this.feedbackResult = feedbackResult;
     }
 }

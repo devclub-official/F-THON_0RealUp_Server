@@ -26,4 +26,5 @@ public interface ProblemHistoryRepository extends JpaRepository<ProblemHistory, 
             """, nativeQuery = true)
 	List<DayCountView> findDailyCountsByMemberAndYear(@Param("memberId") Long memberId,
 													  @Param("year")     int  year);
+
 }
