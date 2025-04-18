@@ -11,11 +11,13 @@ import lombok.*;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Table(name = "feedbacks")
 public class Feedback extends BaseTimeEntity {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "feedback_id")
     private Long id;
+
+    @Column(name = "member_id", nullable = false)
+    private Long memberId;
 
     @Column(name = "problem_title", nullable = false)
     private String problemTitle;
@@ -30,8 +32,9 @@ public class Feedback extends BaseTimeEntity {
     @Column(name = "feedback_result", nullable = false)
     private String feedbackResult;
 
-    public static Feedback createFeedback(String problemTitle, String difficulty, String feedbackResult) {
+    public static Feedback createFeedback(Long memberId, String problemTitle, String difficulty, String feedbackResult) {
         return Feedback.builder()
+                .memberId(memberId)
                 .problemTitle(problemTitle)
                 .difficulty(difficulty)
                 .feedbackResult(feedbackResult)
