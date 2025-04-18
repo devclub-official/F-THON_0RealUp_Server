@@ -18,6 +18,10 @@ public class UrlPath {
 		public static final String ROOT = REST_PREFIX + REST_VERSION + "/feedback";
 
 	}
+	public static final class Webhook {
+		public static final String ROOT = REST_PREFIX + REST_VERSION + "/webhook";
+
+	}
 	public static final class Problem {
 		public static final String ROOT = REST_PREFIX + REST_VERSION + "/problem";
 

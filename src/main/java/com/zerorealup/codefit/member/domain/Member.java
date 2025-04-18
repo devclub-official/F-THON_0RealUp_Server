@@ -12,6 +12,7 @@ import lombok.Getter;
  * 이 클래스는 멤버의 엔티티를 담당합니다.
  */
 @Entity
+@Getter
 public class Member {
 
     /** 유저 아이디 */
