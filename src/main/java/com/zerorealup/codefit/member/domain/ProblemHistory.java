@@ -1,12 +1,10 @@
 package com.zerorealup.codefit.member.domain;
 
+import com.zerorealup.codefit.core.domain.BaseTimeEntity;
 import com.zerorealup.codefit.member.app.dto.Problem;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -15,15 +13,16 @@ import lombok.NoArgsConstructor;
  */
 @Entity
 @Getter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ProblemHistory {
-
+public class ProblemHistory extends BaseTimeEntity {
 	/**
 	 * id
 	 */
-	@GeneratedValue @Id
-	private int problemId;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
 
 
 	@ManyToOne
@@ -47,8 +46,10 @@ public class ProblemHistory {
 	 */
 
 	public static ProblemHistory of(Member member, Problem problem) {
-		return new ProblemHistory(0, member, problem.title(), problem.level());
+		return ProblemHistory.builder()
+				.member(member)
+				.title(problem.title())
+				.level(problem.level())
+				.build();
 	}
-
-
 }
