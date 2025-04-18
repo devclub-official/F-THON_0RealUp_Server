@@ -6,6 +6,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+import lombok.Getter;
+
 /**
  * 이 클래스는 멤버의 엔티티를 담당합니다.
  */
