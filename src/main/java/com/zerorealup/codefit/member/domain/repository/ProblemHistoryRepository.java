@@ -13,5 +13,5 @@ import org.springframework.stereotype.Repository;
 public interface ProblemHistoryRepository extends JpaRepository<ProblemHistory, Long> {
 
 	@Query("SELECT p.problemId FROM ProblemHistory p WHERE p.member.id = :memberId")
-	List<Integer> findAllByMemberId(int memberId);
+	List<Integer> findAllByMemberId(Long memberId);
 }
