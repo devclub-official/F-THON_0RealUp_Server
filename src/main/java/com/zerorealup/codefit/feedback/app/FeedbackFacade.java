@@ -20,7 +20,7 @@ public class FeedbackFacade {
     public Feedback createCodeFeedback(
             Feedback feedback
     ) {
-        memberService.findExistingMember(feedback.getMember().getId());
+        memberService.findExistingMember(feedback.getMemberId());
         aiUsageService.increaseUsage(feedback.getId());
 
         String feedbackResult = processor.createCodeFeedback(feedback.getCode());

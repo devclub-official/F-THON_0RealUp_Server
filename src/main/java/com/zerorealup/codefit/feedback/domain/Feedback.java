@@ -32,9 +32,6 @@ public class Feedback extends BaseTimeEntity {
     @Column(name = "filename", nullable = false)
     private String fileName;
 
-    @ManyToOne
-    @JoinColumn(name = "member_id", nullable = false)
-    private Member member;
     @Lob
     @Column(name = "code", columnDefinition = "TEXT", nullable = false)
     private String code;
@@ -52,9 +49,9 @@ public class Feedback extends BaseTimeEntity {
                 .build();
     }
 
-    public static Feedback createFeedback(Member member, String code, String fileName) {
+    public static Feedback createFeedback(Long memberId, String code, String fileName) {
         return Feedback.builder()
-                .member(member)
+                .memberId(memberId)
                 .code(code)
                 .fileName(fileName)
                 .build();

@@ -75,7 +75,7 @@ public class GithubSearchCommitFile {
 		}
 		reader.close();
 		conn.disconnect();
-		Feedback feedback = Feedback.createFeedback(member , contentBuilder.toString(), filename);
+		Feedback feedback = Feedback.createFeedback(member.getId() , contentBuilder.toString(), filename);
 		return Optional.of(repository.save(feedback));
 	}
 
