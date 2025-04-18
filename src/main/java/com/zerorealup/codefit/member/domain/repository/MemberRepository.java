@@ -9,6 +9,6 @@ import org.springframework.data.jpa.repository.Query;
  */
 public interface MemberRepository extends JpaRepository<Member, Long> {
 
-	@Query("SELECT m FROM Member m WHERE m.githubId = :baekjoonId")
-	Member findByGithubId(String baekjoonId);
+	@Query("SELECT m FROM Member m WHERE m.githubId = :githubId")
+	Member findByGithubId(String githubId);
 }

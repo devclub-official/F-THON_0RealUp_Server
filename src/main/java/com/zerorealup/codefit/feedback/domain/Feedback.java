@@ -20,7 +20,7 @@ public class Feedback extends BaseTimeEntity {
     @Column(name = "member_id", nullable = false)
     private Long memberId;
 
-    @Column(name = "problem_title", nullable = false)
+    @Column(name = "problem_title")
     private String problemTitle;
 
     @Column(name = "category")
