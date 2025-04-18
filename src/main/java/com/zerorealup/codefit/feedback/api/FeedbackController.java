@@ -13,10 +13,10 @@ public class FeedbackController {
 
     @ResponseStatus(HttpStatus.OK)
     @PostMapping
-    public String createFeedback(
+    public String testCreateFeedback(
             @RequestParam("memberId") Long memberId,
             @RequestBody String code
     ) {
-        return feedbackFacade.createCodeFeedback(memberId, code);
+        return feedbackFacade.testCodeFeedback(memberId, code);
     }
 }
