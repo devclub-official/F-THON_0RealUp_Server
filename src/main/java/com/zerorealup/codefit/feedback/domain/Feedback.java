@@ -38,7 +38,7 @@ public class Feedback extends BaseTimeEntity {
     private String code;
 
     @Lob
-    @Column(name = "feedback_result")
+    @Column(name = "feedback_result", columnDefinition = "TEXT")
     private String feedbackResult;
 
     public static Feedback createFeedback(String problemTitle, String difficulty, String feedbackResult) {
@@ -55,5 +55,9 @@ public class Feedback extends BaseTimeEntity {
                 .code(code)
                 .fileName(fileName)
                 .build();
+    }
+
+    public void writeFeedback(String feedbackResult) {
+        this.feedbackResult = feedbackResult;
     }
 }

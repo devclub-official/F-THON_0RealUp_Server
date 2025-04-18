@@ -18,18 +18,13 @@ public class FeedbackFacade {
 
     // todo: event로 받아 처리
     public Feedback createCodeFeedback(
-            Long memberId, String problemTitle, String difficulty, String code
+            Feedback feedback
     ) {
-        memberService.findExistingMember(memberId);
-        aiUsageService.increaseUsage(memberId);
+        memberService.findExistingMember(feedback.getMember().getId());
+        aiUsageService.increaseUsage(feedback.getId());
 
-        String feedbackResult = processor.createCodeFeedback(code);
-
-        Feedback feedback = Feedback.createFeedback(
-                problemTitle,
-                difficulty,
-                feedbackResult
-        );
+        String feedbackResult = processor.createCodeFeedback(feedback.getCode());
+        feedback.writeFeedback(feedbackResult);
 
         return feedbackService.save(feedback);
     }

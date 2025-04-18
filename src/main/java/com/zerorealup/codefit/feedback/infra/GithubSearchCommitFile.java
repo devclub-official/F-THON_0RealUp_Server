@@ -7,6 +7,7 @@ import com.zerorealup.codefit.feedback.domain.repository.FeedbackRepository;
 import com.zerorealup.codefit.feedback.infra.dto.GithubCommitResponse;
 import com.zerorealup.codefit.feedback.infra.dto.GithubCommitResponse.ChangedFile;
 import com.zerorealup.codefit.member.domain.Member;
+import jakarta.transaction.Transactional;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,6 +18,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -32,27 +34,35 @@ public class GithubSearchCommitFile {
 
 	private final FeedbackRepository repository;
 	private final String GITHUB_API_URL = "https://api.github.com/repos";
-	private final String FILE_SAVE_PATH = "downloaded";
 
 	private final ObjectMapper objectMapper = new ObjectMapper();
 
-	public void saveFile(Member member, String owner, String repo, String commitHash)
+	public Optional<Feedback>  saveFile(Member member, String owner, String repo, String commitHash)
 		throws IOException {
 
 		GithubCommitResponse response = fetchChangedFiles(String.format("%s/%s/%s/commits/%s", GITHUB_API_URL, owner, repo, commitHash));
+		Optional<Feedback> feedback= Optional.empty();
+
 		for (ChangedFile file : response.files()) {
 
-			try {
-				downloadAndSaveGitHubFile(member, file.rawUrl(), file.filename());
-			} catch (Exception e) {
-				log.error("파일 다운로드 실패", e.getMessage());
+			if (file.filename().endsWith(".java")) {
+				try {
+					feedback = downloadAndSaveGitHubFile(member, file.rawUrl(), file.filename());
+				} catch (Exception e) {
+					log.error("파일 다운로드 실패", e.getMessage());
+				}
+
 			}
 
+			// todo 리드미 파일을 읽어서 처리하는 것도 구현해야함
+
 		}
+		return feedback;
 
 	}
 
-	public void downloadAndSaveGitHubFile(Member member, String rawUrl, String filename) throws Exception {
+	@Transactional
+	public Optional<Feedback> downloadAndSaveGitHubFile(Member member, String rawUrl, String filename) throws Exception {
 		URL url = new URL(rawUrl);
 		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 		conn.setRequestMethod("GET");
@@ -66,7 +76,7 @@ public class GithubSearchCommitFile {
 		reader.close();
 		conn.disconnect();
 		Feedback feedback = Feedback.createFeedback(member , contentBuilder.toString(), filename);
-		repository.save(feedback);
+		return Optional.of(repository.save(feedback));
 	}
 
 	private GithubCommitResponse fetchChangedFiles(String commitUrl) throws IOException {

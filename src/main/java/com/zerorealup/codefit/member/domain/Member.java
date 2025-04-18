@@ -18,7 +18,7 @@ public class Member {
     /** 유저 아이디 */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     /** 하루 목표 */
     @Column(name = "goal", nullable = false)
