@@ -1,4 +1,4 @@
-package com.zerorealup.codefit.member.domain.entity;
+package com.zerorealup.codefit.member.domain;
 
 import com.zerorealup.codefit.member.app.dto.Problem;
 import jakarta.persistence.Entity;
@@ -6,9 +6,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

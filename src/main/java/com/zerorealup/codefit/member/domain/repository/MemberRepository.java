@@ -1,6 +1,6 @@
 package com.zerorealup.codefit.member.domain.repository;
 
-import com.zerorealup.codefit.member.domain.entity.Member;
+import com.zerorealup.codefit.member.domain.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

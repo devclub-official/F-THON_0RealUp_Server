@@ -1,8 +1,8 @@
 package com.zerorealup.codefit.member.domain.service.schedule;
 
 import com.zerorealup.codefit.member.app.dto.Problem;
-import com.zerorealup.codefit.member.domain.entity.Member;
-import com.zerorealup.codefit.member.domain.entity.ProblemHistory;
+import com.zerorealup.codefit.member.domain.Member;
+import com.zerorealup.codefit.member.domain.ProblemHistory;
 import com.zerorealup.codefit.member.domain.repository.MemberRepository;
 import com.zerorealup.codefit.member.domain.repository.ProblemHistoryRepository;
 import com.zerorealup.codefit.member.domain.service.ProblemHistoryService;

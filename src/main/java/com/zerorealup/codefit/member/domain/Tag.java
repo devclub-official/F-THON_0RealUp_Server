@@ -1,4 +1,4 @@
-package com.zerorealup.codefit.member.domain.entity;
+package com.zerorealup.codefit.member.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

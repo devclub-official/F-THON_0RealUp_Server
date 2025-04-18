@@ -1,4 +1,4 @@
-package com.zerorealup.codefit.member.domain.entity;
+package com.zerorealup.codefit.member.domain;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
