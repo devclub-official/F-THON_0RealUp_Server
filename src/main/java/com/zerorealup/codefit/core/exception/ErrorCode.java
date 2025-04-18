@@ -20,6 +20,12 @@ public enum ErrorCode {
     METHOD_NOT_SUPPORTED(METHOD_NOT_ALLOWED,"허용되지 않은 메서드입니다."),
     MEDIA_TYPE_NOT_SUPPORTED(UNSUPPORTED_MEDIA_TYPE,"허용되지 않은 미디어 타입입니다."),
     SERVER_ERROR(INTERNAL_SERVER_ERROR,"서버 오류가 발생했습니다. 관리자에게 문의하세요."),
+
+    // Member
+    NOT_FOUND_MEMBER(NOT_FOUND, "회원을 찾을 수 없습니다. MemberId : %d"),
+
+    // AI
+    AI_USAGE_LIMIT_EXCEEDED(TOO_MANY_REQUESTS, "오늘 사용 가능한 AI 사용 횟수를 초과했습니다. MemberId : %d, Date : %s"),
     ;
 
     public final HttpStatus httpStatus;
