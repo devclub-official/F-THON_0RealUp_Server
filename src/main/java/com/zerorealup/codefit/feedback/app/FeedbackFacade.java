@@ -26,6 +26,7 @@ public class FeedbackFacade {
         String feedbackResult = processor.createCodeFeedback(code);
 
         Feedback feedback = Feedback.createFeedback(
+                memberId,
                 problemTitle,
                 difficulty,
                 feedbackResult
