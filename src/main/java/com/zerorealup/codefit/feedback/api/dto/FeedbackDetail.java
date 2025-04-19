@@ -11,6 +11,7 @@ public record FeedbackDetail(
         String category,
         String difficulty,
         LocalDate date,
+        String code,
         String feedback
 ) {
     public static FeedbackDetail from(Feedback f) {
@@ -20,6 +21,7 @@ public record FeedbackDetail(
                 f.getCategory(),
                 f.getDifficulty(),
                 f.getCreatedAt().atZone(ZoneId.of("Asia/Seoul")).toLocalDate(),
+                f.getCode(),
                 f.getFeedbackResult()
         );
     }
