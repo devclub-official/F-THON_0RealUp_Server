@@ -28,8 +28,11 @@ public class Feedback extends BaseTimeEntity {
     @Column(name = "difficulty", nullable = false, length = 20)
     private String difficulty;
 
+    @Column(columnDefinition = "TEXT")
+    private String code;
+
     @Lob
-    @Column(name = "feedback_result", columnDefinition = "TEXT", nullable = false)
+    @Column(name = "feedback_result", columnDefinition = "TEXT")
     private String feedbackResult;
 
     public static Feedback createFeedback(Long memberId, String problemTitle, String difficulty, String feedbackResult) {
