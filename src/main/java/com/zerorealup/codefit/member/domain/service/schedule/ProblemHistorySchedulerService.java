@@ -28,7 +28,7 @@ public class ProblemHistorySchedulerService {
 	/**
 	 * 매일 오전 3시에 ProblemHistory를 업데이트합니다.
 	 */
-	@Scheduled(cron = "*/10 * * * * *")
+	@Scheduled(cron = "*/10 0 * * * *")
 	public void fetchProblemHistories() {
 		try {
 			// user id 조회

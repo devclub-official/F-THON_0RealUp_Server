@@ -1,6 +1,7 @@
 package com.zerorealup.codefit.feedback.domain;
 
 import com.zerorealup.codefit.core.domain.BaseTimeEntity;
+import com.zerorealup.codefit.member.domain.Member;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -19,16 +20,20 @@ public class Feedback extends BaseTimeEntity {
     @Column(name = "member_id", nullable = false)
     private Long memberId;
 
-    @Column(name = "problem_title", nullable = false)
+    @Column(name = "problem_title")
     private String problemTitle;
 
-    @Column(name = "category", nullable = false)
+    @Column(name = "category")
     private String category;
 
-    @Column(name = "difficulty", nullable = false, length = 20)
+    @Column(name = "difficulty", length = 20)
     private String difficulty;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(name = "filename", nullable = false)
+    private String fileName;
+
+    @Lob
+    @Column(name = "code", columnDefinition = "TEXT", nullable = false)
     private String code;
 
     @Lob
@@ -42,5 +47,17 @@ public class Feedback extends BaseTimeEntity {
                 .difficulty(difficulty)
                 .feedbackResult(feedbackResult)
                 .build();
+    }
+
+    public static Feedback createFeedback(Long memberId, String code, String fileName) {
+        return Feedback.builder()
+                .memberId(memberId)
+                .code(code)
+                .fileName(fileName)
+                .build();
+    }
+
+    public void writeFeedback(String feedbackResult) {
+        this.feedbackResult = feedbackResult;
     }
 }
